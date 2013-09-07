@@ -1,0 +1,27 @@
+<h1>Listing ads</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ads.each do |ad| %>
+  <tr>
+    <td><%= ad.description %></td>
+    <td><%= ad.name %></td>
+    <td><%= ad.status %></td>
+    <td><%= link_to 'Show', ad %></td>
+    <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
+    <td><%= link_to 'Destroy', ad, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @ads %>
+<br />
+
+<%= link_to 'New Ad', new_ad_path %>

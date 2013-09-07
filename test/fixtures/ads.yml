@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  description: MyText
+  name: MyString
+  status: 9.99
+
+two:
+  description: MyText
+  name: MyString
+  status: 9.99

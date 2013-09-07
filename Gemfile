@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "paperclip", "~> 2.7"
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
@@ -8,7 +9,7 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 
 gem 'json'
-
+gem 'devise'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -37,3 +38,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug'
+gem 'will_paginate', '~> 3.0'
+
+#https://github.com/thoughtbot/paperclip
