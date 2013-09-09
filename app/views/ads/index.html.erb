@@ -5,6 +5,7 @@
     <th>Description</th>
     <th>Name</th>
     <th>Status</th>
+    <th>Type</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +16,8 @@
     <td><%= ad.description %></td>
     <td><%= ad.name %></td>
     <td><%= ad.status %></td>
+    <td><%= getNameOfType (@types, ad.ads_type_id.to_i)   %></td>
+    <td><%= ad.ads_type_id.to_i %></td>
     <td><%= link_to 'Show', ad %></td>
     <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
     <td><%= link_to 'Destroy', ad, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

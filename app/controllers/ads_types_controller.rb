@@ -44,7 +44,7 @@ class AdsTypesController < ApplicationController
 
     respond_to do |format|
       if @ads_type.save
-        format.html { redirect_to @ads_type, :notice => 'Ads type was successfully created.' }
+        format.html { redirect_to  @ads_type, :notice => 'Ads type was successfully created.' }
         format.json { render :json => @ads_type, :status => :created, :location => @ads_type }
       else
         format.html { render :action => "new" }

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem "paperclip", "~> 2.7"
 gem 'rails', '3.2.13'
-
+gem "chronic", "~> 0.10.1"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -39,5 +39,6 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 gem 'will_paginate', '~> 3.0'
+gem 'whenever'
 
 #https://github.com/thoughtbot/paperclip

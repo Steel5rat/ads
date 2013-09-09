@@ -4,7 +4,7 @@ class AdsController < ApplicationController
   def index
     #@ads = Ad.all
     @ads = Ad.order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate    
-
+	@types = AdsType.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @ads }
@@ -27,7 +27,6 @@ class AdsController < ApplicationController
   # GET /ads/new.json
   def new
     @ad = Ad.create :status => 1, :ads_type_id => 1
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @ad }
@@ -37,13 +36,13 @@ class AdsController < ApplicationController
   # GET /ads/1/edit
   def edit
     @ad = Ad.find(params[:id])
+    @ads_types = AdsType.all
   end
 
   # POST /ads
   # POST /ads.json
   def create
     @ad = Ad.new(params[:ad])
-
     respond_to do |format|
       if @ad.save
         format.html { redirect_to @ad, :notice => 'Ad was successfully created.' }
@@ -59,7 +58,7 @@ class AdsController < ApplicationController
   # PUT /ads/1.json
   def update
     @ad = Ad.find(params[:id])
-
+	@ads_types = AdsType.all
     respond_to do |format|
       if @ad.update_attributes(params[:ad])
 		  if params[:commit] == 'Update Ad'

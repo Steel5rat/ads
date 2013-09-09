@@ -11,9 +11,8 @@
 <% @ads_types.each do |ads_type| %>
   <tr>
     <td><%= ads_type.name %></td>
-    <td><%= link_to 'Show', ads_type %></td>
     <td><%= link_to 'Edit', edit_ads_type_path(ads_type) %></td>
-    <td><%= link_to 'Destroy', ads_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><%= link_to 'Destroy', ads_type, :method => :delete if Ad.where("ads_type_id =" + ads_type.id.to_s).empty?%></td>
   </tr>
 <% end %>
 </table>
