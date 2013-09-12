@@ -1,4 +1,10 @@
 Ads::Application.routes.draw do
+
+  devise_for :users
+
+  resources :users
+
+
   resources :ads_types
 
 
@@ -8,6 +14,7 @@ Ads::Application.routes.draw do
   resources :ads
 
 
+  root :to => 'ads#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -31,7 +31,7 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.1.2)
     builder (3.0.4)
-    chronic (0.10.1)
+    cancan (1.6.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -116,16 +116,13 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.3)
       rack (>= 1.0)
-    whenever (0.8.4)
-      activesupport (>= 2.3.4)
-      chronic (>= 0.6.3)
     will_paginate (3.0.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  chronic (~> 0.10.1)
+  cancan
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
@@ -135,5 +132,4 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
-  whenever
   will_paginate (~> 3.0)

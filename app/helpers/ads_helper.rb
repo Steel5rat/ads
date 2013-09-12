@@ -1,11 +1,12 @@
 module AdsHelper
 	def getAdsTypes ads_types		
 		types = []
-		ads_types.each do |t|
+		if ads_types != nil
+			ads_types.each do |t|
 			types << [t.name, t.id]
-		end
+			end		
+		end		
 		types
-		#ads_types[0]<<adstypes[1]
 	end
 	
 	def getNameOfType types, id	
