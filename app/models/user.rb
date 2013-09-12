@@ -8,7 +8,14 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :id
-  attr_accessible :name, :password, :role
+  attr_accessible :name, :password
+  attr_accessible :role
   validates_presence_of :name, :password
   validates_uniqueness_of :name, :email, :case_sensitive => false
+    after_initialize :default_values
+
+private
+  def default_values
+    self.role ||= 1
+  end
 end
