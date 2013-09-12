@@ -1,5 +1,7 @@
 Ads::Application.routes.draw do
 
+  get "ads/myads"
+
   devise_for :users
 
   resources :users

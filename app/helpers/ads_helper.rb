@@ -1,15 +1,9 @@
 module AdsHelper
-	def getAdsTypes ads_types		
-		types = []
-		if ads_types != nil
-			ads_types.each do |t|
-			types << [t.name, t.id]
-			end		
-		end		
-		types
+	def get_ads_types(ads_types)
+		ads_types.map { |t| [t.name, t.id] }			
 	end
 	
-	def getNameOfType types, id	
+	def get_name_of_type types, id	
 		types.each do |type|
 			if type[:id] == id
 				return type[:name]

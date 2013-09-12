@@ -5,7 +5,7 @@ class CreateAds < ActiveRecord::Migration
       t.string :name
       t.integer :status
       t.belongs_to :ads_type, :null =>false
-      
+      t.belongs_to :user, :null =>false
       t.timestamps
     end
   end

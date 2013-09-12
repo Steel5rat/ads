@@ -26,7 +26,7 @@ class AdsController < ApplicationController
   # GET /ads/new
   # GET /ads/new.json
   def new
-    @ad = Ad.create :status => 1, :ads_type_id => AdsType.first.id
+    @ad = Ad.create :status => 1, :ads_type_id => AdsType.first.id, :user_id => current_user.id
     @ads_types = AdsType.all
     respond_to do |format|
       format.html # new.html.erb
@@ -84,6 +84,16 @@ class AdsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to ads_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def myads
+    #@ads = Ad.all
+    @ads = Ad.where(:user_id => current_user.id).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate    
+	@types = AdsType.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @ads }
     end
   end
 end

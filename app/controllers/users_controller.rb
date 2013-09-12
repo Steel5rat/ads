@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource :only => :index
   # GET /users
   # GET /users.json
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    #authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = User.all
 
     respond_to do |format|
