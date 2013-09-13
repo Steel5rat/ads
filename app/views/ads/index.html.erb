@@ -15,8 +15,8 @@
   <tr>
     <td><%= ad.description %></td>
     <td><%= ad.name %></td>
-    <td><%= ad.status %></td>
-    <td><%= get_name_of_type (@types, ad.ads_type_id.to_i)   %></td>
+    <td><%= ad.state_name %></td>
+    <td><%= get_name_of_type(@types, ad.ads_type_id.to_i)%></td>
     <td><%= link_to 'Show', ad %></td>
     <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
     <td><%= link_to 'Destroy', ad, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>

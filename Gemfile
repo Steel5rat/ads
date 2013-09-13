@@ -4,7 +4,9 @@ gem "paperclip", "~> 2.7"
 gem 'will_paginate', '~> 3.0'
 gem 'cancan'
 gem 'devise'
-#gem 'whenever'
+
+gem 'state_machine'# :require => 'state_machine/core'
+gem 'whenever'
 
 
 gem 'rails', '3.2.13'

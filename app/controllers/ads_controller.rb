@@ -1,4 +1,5 @@
 class AdsController < ApplicationController
+  load_and_authorize_resource
   # GET /ads
   # GET /ads.json
   def index
@@ -26,7 +27,7 @@ class AdsController < ApplicationController
   # GET /ads/new
   # GET /ads/new.json
   def new
-    @ad = Ad.create :status => 1, :ads_type_id => AdsType.first.id, :user_id => current_user.id
+    @ad = Ad.create :status => 1, :ads_type_id => AdsType.first.id, :user_id => current_user.id, :state => 1
     @ads_types = AdsType.all
     respond_to do |format|
       format.html # new.html.erb

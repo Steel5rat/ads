@@ -12,8 +12,9 @@ class User < ActiveRecord::Base
   attr_accessible :role
   validates_presence_of :name, :password
   validates_uniqueness_of :name, :email, :case_sensitive => false
-    after_initialize :default_values
-
+  after_initialize :default_values
+  validates :role,  :format => { :with => /[12]/, :message => "only allows digits 1 or 2" }
+  
 private
   def default_values
     self.role ||= 1

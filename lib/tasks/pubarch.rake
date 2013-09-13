@@ -3,9 +3,8 @@ namespace :pubarch do
   task :publish => :environment do
 	ads = Ad.all
 	ads.each do |ad|
-		if ad.status == 4
-			ad.status = 5
-			ad.save
+		if ad.can_publish?
+			ad.publish
 		end
 	end
   end
@@ -13,11 +12,10 @@ namespace :pubarch do
   task :archive => :environment do
 	ads = Ad.all
 	ads.each do |ad|
-		if ad.status == 5
+		if ad.can_archive?
 			dif = (Time.now - ad.updated_at)/60/60/24 #to days
 				if dif > 2
-					ad.status = 6
-					ad.save
+					ad.archive
 				end
 		end
 	end
