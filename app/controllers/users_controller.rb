@@ -58,11 +58,10 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   # PUT /users/1.json
-  def update
-    @user = User.find(params[:id])
-    @user.role = params[:role]
+  def update    
+	role = params[:role]
     respond_to do |format|
-      if @user.save
+      if @user.update_attributes(:role => role)
         format.html { redirect_to @user, :notice => 'User was successfully updated.' }
         format.json { head :no_content }
       else

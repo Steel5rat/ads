@@ -89,11 +89,37 @@ class AdsController < ApplicationController
   end
   
   def myads
-    #@ads = Ad.all
     @ads = Ad.where(:user_id => current_user.id).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate    
 	@types = AdsType.all
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
+      format.json { render :json => @ads }
+    end
+  end
+  
+  def new_ads  #show different types of ads to admin 
+    @ads = Ad.with_states(:new).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate    
+	@types = AdsType.all
+    respond_to do |format|
+      format.html 
+      format.json { render :json => @ads }
+    end
+  end
+  
+  def archive_ads
+    @ads = Ad.with_states(:archived).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate    
+	@types = AdsType.all
+    respond_to do |format|
+      format.html 
+      format.json { render :json => @ads }
+    end
+  end
+  
+  def approved_ads
+    @ads = Ad.with_states(:approved).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate    
+	@types = AdsType.all
+    respond_to do |format|
+      format.html 
       format.json { render :json => @ads }
     end
   end

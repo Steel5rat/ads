@@ -5,6 +5,7 @@ class Ability
 	user ||= User.new :role => 0 # guest user (not logged in)
     if user.role == 2
       can :manage, :all
+      cannot :create, Ad
     end
     
     if user.role == 1

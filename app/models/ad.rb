@@ -21,7 +21,7 @@ class Ad < ActiveRecord::Base
       transition :draft => :new
     end
     
-    event :denie do
+    event :deny do
       transition :new => :denied
     end
     
