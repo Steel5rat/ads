@@ -7,5 +7,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Edit', edit_image_path(@image) if can? :update, @image  %>  
 <%= link_to 'Back', edit_ad_path(@image.ad_id) %>

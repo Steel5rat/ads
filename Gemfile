@@ -4,7 +4,7 @@ gem "paperclip", "~> 2.7"
 gem 'will_paginate', '~> 3.0'
 gem 'cancan'
 gem 'devise'
-
+gem 'enumerize'
 gem 'state_machine'# :require => 'state_machine/core'
 gem 'whenever'
 

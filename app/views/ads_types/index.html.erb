@@ -11,12 +11,12 @@
 <% @ads_types.each do |ads_type| %>
   <tr>
     <td><%= ads_type.name %></td>
-    <td><%= link_to 'Edit', edit_ads_type_path(ads_type) %></td>
-    <td><%= link_to 'Destroy', ads_type, :method => :delete if Ad.where("ads_type_id =" + ads_type.id.to_s).empty?%></td>
+    <td><%= link_to 'Edit', edit_ads_type_path(ads_type) if can? :update, ads_type %></td>
+    <td><%= link_to 'Destroy', ads_type, :method => :delete if Ad.where(:ads_type_id => ads_type.id.to_s).empty?%></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Ads type', new_ads_type_path %>
+<%= link_to 'New Ads type', new_ads_type_path if can? :create, AdsType %>

@@ -16,12 +16,12 @@
     <td><%= user.password %></td>
     <td><%= user.role %></td>
     <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit user role', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit user role', edit_user_path(user) if can? :update, user%></td>
+    <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } if can? :delete, user%></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_path if can? :create, User%>

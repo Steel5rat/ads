@@ -1,6 +1,7 @@
 class AdminActionsController < ApplicationController
   def deny
     @ad = Ad.find(params[:id])
+    authorize! :update_state, @ad
     @ad.deny
 
     respond_to do |format|
@@ -11,6 +12,7 @@ class AdminActionsController < ApplicationController
 
   def approve
     @ad = Ad.find(params[:id])
+    authorize! :update_state, @ad
     @ad.approve
 
     respond_to do |format|

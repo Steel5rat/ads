@@ -59,9 +59,15 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update    
-	role = params[:role]
+    @user = User.find(params[:id])
+    #if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+		params[:user].delete(:password)
+		params[:user].delete(:password_confirmation)
+	#end
+	
+	params[:user].delete(:current_password)	
     respond_to do |format|
-      if @user.update_attributes(:role => role)
+      if @user.update_without_password(params[:user])	
         format.html { redirect_to @user, :notice => 'User was successfully updated.' }
         format.json { head :no_content }
       else

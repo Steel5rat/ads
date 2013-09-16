@@ -4,8 +4,8 @@ class AdsController < ApplicationController
   # GET /ads.json
   def index
     #@ads = Ad.all
-    @ads = Ad.order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate    
-	@types = AdsType.all
+    @ads = Ad.with_states(:draft).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate      
+	@types = AdsType.all #TODO: change to :published
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @ads }
@@ -80,6 +80,7 @@ class AdsController < ApplicationController
   # DELETE /ads/1.json
   def destroy
     @ad = Ad.find(params[:id])
+    authorize! :delete, @ad
     @ad.destroy
 
     respond_to do |format|
