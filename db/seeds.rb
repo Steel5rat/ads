@@ -7,4 +7,6 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
 AdsType.create(:name =>'default')
-User.create(:email => 'try@example.by', :name => 'admin', :password => '12345678', :role => 2)
+AdsType.create(:name =>'smth important')
+User.create(:email => 'try@example.by', :name => 'admin', :password => '12345678', :role => 'admin')
+User.create(:email => 'sss@sss.sss', :name => 'snake', :password => 'ssssssss', :role => 'user')

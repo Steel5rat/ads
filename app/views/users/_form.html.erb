@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :role %><br />
-    <%= f.number_field :role %>
+    <%= f.select(:role, [['admin','admin'],['user','user']])%>
   </div>
   <div class="actions">
     <%= f.submit %>

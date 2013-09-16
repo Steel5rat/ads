@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    #authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = User.all
 
     respond_to do |format|
@@ -38,6 +37,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    authorize! :set_role, @user
   end
 
   # POST /users
@@ -60,12 +60,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update    
     @user = User.find(params[:id])
-    #if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-		params[:user].delete(:password)
-		params[:user].delete(:password_confirmation)
-	#end
-	
-	params[:user].delete(:current_password)	
+    authorize! :set_role, @user
     respond_to do |format|
       if @user.update_without_password(params[:user])	
         format.html { redirect_to @user, :notice => 'User was successfully updated.' }

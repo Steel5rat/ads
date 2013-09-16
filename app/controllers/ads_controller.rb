@@ -27,7 +27,7 @@ class AdsController < ApplicationController
   # GET /ads/new
   # GET /ads/new.json
   def new
-    @ad = Ad.create :status => 1, :ads_type_id => AdsType.first.id, :user_id => current_user.id, :state => 1
+    @ad = Ad.create :ads_type_id => AdsType.first.id, :user_id => current_user.id, :state => 1
     @ads_types = AdsType.all
     respond_to do |format|
       format.html # new.html.erb
