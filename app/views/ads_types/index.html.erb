@@ -12,7 +12,7 @@
   <tr>
     <td><%= ads_type.name %></td>
     <td><%= link_to 'Edit', edit_ads_type_path(ads_type) if can? :update, ads_type %></td>
-    <td><%= link_to 'Destroy', ads_type, :method => :delete if(can?(:delete, ads_type) && Ad.where(:ads_type_id => ads_type.id.to_s).empty?)%></td>
+    <td><%= link_to 'Destroy', ads_type, :data => { :confirm => 'Are you sure?' }, :method => :delete if(can?(:delete, ads_type) && ads_type.check_ads_count) %></td>
   </tr>
 <% end %>
 </table>

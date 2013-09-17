@@ -30,5 +30,11 @@
 
 </p>
 
-<%= link_to 'Edit', edit_ad_path(@ad) if can? :update, @ad %> |
+<%= link_to 'Edit', edit_ad_path(@ad) if can? :update, @ad %>
 <%= link_to 'Back', ads_path %>
+<% if current_user.role.admin?  %>
+	<%= link_to 'Deny', admin_actions_deny_path(:id => @ad.id) if @ad.can_to_denied %>
+    <%= link_to 'Approve', admin_actions_approve_path(:id => @ad.id) if @ad.can_to_approved %>
+<% elsif current_user.role.user?  %>
+
+<% end %>

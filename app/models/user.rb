@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   extend Enumerize
   
-  has_many :ads
+  has_many :ads, :dependent => :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -14,9 +14,22 @@ class User < ActiveRecord::Base
   attr_accessible :role
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false
-  after_initialize :default_values
-  #validates :role,  :format => { :with => /[1,2]/, :message => "only allows digits 1 or 2" }
   enumerize :role, in: [:user, :admin], :default => :user
+  
+  after_initialize :default_values
+  before_destroy :check_last_admin
+  
+  def check_last_admin
+    #logger.debug("admins count: #{User.where(:role => :admin).count}")
+    if role.admin?
+		if User.where(:role => :admin).count == 1
+			errors.add :base, "Cannot delete last admin"
+			return false
+		end
+	end
+	true
+  end 
+  
   
 private
   def default_values
