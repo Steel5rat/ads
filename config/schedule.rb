@@ -1,4 +1,3 @@
-#set :output, "./log/cron_log.log"
 
 every :day, :at => "0:00 am" do
   rake "pubarch:publish" 

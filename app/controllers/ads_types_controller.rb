@@ -1,7 +1,6 @@
 class AdsTypesController < ApplicationController
   load_and_authorize_resource
-  # GET /ads_types
-  # GET /ads_types.json
+
   def index
     @ads_types = AdsType.all
 
@@ -11,8 +10,6 @@ class AdsTypesController < ApplicationController
     end
   end
 
-  # GET /ads_types/1
-  # GET /ads_types/1.json
   def show
     @ads_type = AdsType.find(params[:id])
 
@@ -22,8 +19,6 @@ class AdsTypesController < ApplicationController
     end
   end
 
-  # GET /ads_types/new
-  # GET /ads_types/new.json
   def new
     @ads_type = AdsType.new
 
@@ -33,13 +28,10 @@ class AdsTypesController < ApplicationController
     end
   end
 
-  # GET /ads_types/1/edit
   def edit
     @ads_type = AdsType.find(params[:id])
   end
 
-  # POST /ads_types
-  # POST /ads_types.json
   def create
     @ads_type = AdsType.new(params[:ads_type])
 
@@ -54,8 +46,6 @@ class AdsTypesController < ApplicationController
     end
   end
 
-  # PUT /ads_types/1
-  # PUT /ads_types/1.json
   def update
     @ads_type = AdsType.find(params[:id])
 
@@ -70,8 +60,6 @@ class AdsTypesController < ApplicationController
     end
   end
 
-  # DELETE /ads_types/1
-  # DELETE /ads_types/1.json
   def destroy
     @ads_type = AdsType.find(params[:id])
     respond_to do |format|
@@ -79,8 +67,7 @@ class AdsTypesController < ApplicationController
 			format.html { redirect_to ads_types_url }			
 		else 
 			format.html { redirect_to ads_types_url,  :notice => 'Cannot delete last ads type' }
-		end
-      
+		end      
     end
   end
 end

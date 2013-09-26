@@ -33,8 +33,9 @@
 <%= link_to 'Edit', edit_ad_path(@ad) if can? :update, @ad %>
 <%= link_to 'Back', ads_path %>
 <% if current_user.role.admin?  %>
-	<%= link_to 'Deny', admin_actions_deny_path(:id => @ad.id) if @ad.can_to_denied %>
-    <%= link_to 'Approve', admin_actions_approve_path(:id => @ad.id) if @ad.can_to_approved %>
+	<%= link_to 'Deny', admin_actions_deny_path(:id => @ad.id) if @ad.can_deny? %>
+    <%= link_to 'Approve', admin_actions_approve_path(:id => @ad.id) if @ad.can_approve? %>
 <% elsif current_user.role.user?  %>
-
+	<%= link_to 'send admin to approve', user_actions_to_new_path(:id => @ad.id) if @ad.can_to_new? %>
+    <%= link_to 'move to drafts', user_actions_to_draft_path(:id => @ad.id) if @ad.can_to_draft? %>
 <% end %>

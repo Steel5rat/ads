@@ -7,7 +7,9 @@ gem 'devise'
 gem 'enumerize'
 gem 'state_machine'# :require => 'state_machine/core'
 gem 'whenever'
-
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
 
 gem 'rails', '3.2.13'
 gem 'sqlite3'

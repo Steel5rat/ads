@@ -1,19 +1,18 @@
 class AdsController < ApplicationController
   load_and_authorize_resource
-  # GET /ads
-  # GET /ads.json
+
   def index
-    #@ads = Ad.all
-    @ads = Ad.with_states(:draft).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate      
-	@types = AdsType.all #TODO: change to :published
+    @ads = Ad.with_states(:published).order("created_at DESC").paginate(:page => params[:page], :per_page => 10) #sort, paginate      
+	@types = AdsType.all 
+	@ads.each do |ad|
+		ad.images = Image.where :ad_id => ad.id
+	end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @ads }
     end
   end
 
-  # GET /ads/1
-  # GET /ads/1.json
   def show
 
 	@ad = Ad.find(params[:id])    
@@ -24,8 +23,6 @@ class AdsController < ApplicationController
 	end
   end
 
-  # GET /ads/new
-  # GET /ads/new.json
   def new
     @ad = Ad.create :ads_type_id => AdsType.first.id, :user_id => current_user.id, :state => 1
     @ads_types = AdsType.all
@@ -35,14 +32,11 @@ class AdsController < ApplicationController
     end
   end
 
-  # GET /ads/1/edit
   def edit
     @ad = Ad.find(params[:id])
     @ads_types = AdsType.all
   end
 
-  # POST /ads
-  # POST /ads.json
   def create
     @ad = Ad.new(params[:ad])
     respond_to do |format|
@@ -56,8 +50,6 @@ class AdsController < ApplicationController
     end
   end
 
-  # PUT /ads/1
-  # PUT /ads/1.json
   def update
     @ad = Ad.find(params[:id])
 	@ads_types = AdsType.all
@@ -67,7 +59,7 @@ class AdsController < ApplicationController
 			format.html { redirect_to @ad, :notice => 'Ad was successfully updated.' }
 			format.json { head :no_content }
 		  elsif params[:commit] == 'Add photo'
-			format.html { redirect_to new_image_path :ad_id => params[:id]}
+			format.html { redirect_to images_path :ad_id => params[:id]}
 		  end
       else
         format.html { render :action => "edit" }
@@ -76,11 +68,8 @@ class AdsController < ApplicationController
     end
   end
 
-  # DELETE /ads/1
-  # DELETE /ads/1.json
   def destroy
     @ad = Ad.find(params[:id])
-    authorize! :delete, @ad
     @ad.destroy
 
     respond_to do |format|

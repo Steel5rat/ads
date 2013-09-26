@@ -6,6 +6,5 @@ class CreateAdsTypes < ActiveRecord::Migration
       t.timestamps
     end
     
-  end
-  #AdsTypes.create (:name => 'default')
+  end  
 end

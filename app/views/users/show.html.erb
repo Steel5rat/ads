@@ -21,6 +21,7 @@
 <% if current_user.role.admin? %>
 	<%= link_to 'New ads', ads_new_ads_path %>
 	<%= link_to 'Archived ads', ads_archive_ads_path %>
-	<%= link_to 'Approved ads', ads_approved_ads_path %>
+	<%= link_to 'Approved ads', ads_approved_ads_path %> <br />
+	<%= link_to 'users', users_path %>
 <% end %>
 

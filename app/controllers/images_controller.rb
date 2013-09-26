@@ -2,19 +2,14 @@ class ImagesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
   skip_authorize_resource :only => :index
-  # GET /images
-  # GET /images.json
   def index
-    @images = Image.all
-
+    @images = Image.where(:ad_id => params[:ad_id].to_i) 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @images }
     end
   end
 
-  # GET /images/1
-  # GET /images/1.json
   def show
     @image = Image.find(params[:id])
 	
@@ -24,8 +19,6 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/new
-  # GET /images/new.json
   def new
     @image = Image.create(:ad_id => params[:ad_id].to_i)
 
@@ -35,13 +28,10 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/1/edit
   def edit
     @image = Image.find(params[:id])
   end
 
-  # POST /images
-  # POST /images.json
   def create
     @image = Image.new(params[:image])
 
@@ -56,8 +46,6 @@ class ImagesController < ApplicationController
     end
   end
 
-  # PUT /images/1
-  # PUT /images/1.json
   def update
     @image = Image.find(params[:id])
 
@@ -72,14 +60,13 @@ class ImagesController < ApplicationController
     end
   end
 
-  # DELETE /images/1
-  # DELETE /images/1.json
   def destroy
     @image = Image.find(params[:id])
+    ad_id = @image.ad_id
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to images_path(:ad_id => ad_id)}
       format.json { head :no_content }
     end
   end

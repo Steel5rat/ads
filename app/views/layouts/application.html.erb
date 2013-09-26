@@ -7,18 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'layouts/messages' %>
-<%= link_to 'ADS', ads_path %>
-<%= link_to 'ADS TYPES', ads_types_path %>
-<%= link_to 'USERS', users_path %>
-<% if user_signed_in? %>
-<%= link_to 'SIGN OUT', destroy_user_session_path, :method => 'DELETE' %>
-<%= link_to 'MY PROFILE',  user_path(current_user) %>
-<% else %>
-<%= link_to 'SIGN IN', new_user_session_path %>
-<%= link_to 'SIGN UP', new_user_registration_path %>
-<% end %>
-<%= yield %>
-
+<div class="main">
+	<%= render 'layouts/messages' %>
+	<%= link_to 'ADS', ads_path %>
+	<%= link_to 'ADS TYPES', ads_types_path %>
+	<% if user_signed_in? %>
+	<%= link_to 'SIGN OUT', destroy_user_session_path, :method => 'DELETE' %>
+	<%= link_to 'MY PROFILE',  user_path(current_user) %>
+	<% else %>
+	<%= link_to 'SIGN IN', new_user_session_path %>
+	<%= link_to 'SIGN UP', new_user_registration_path %>
+	<% end %>
+	<%= yield %>
+</div>
 </body>
 </html>

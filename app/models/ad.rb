@@ -2,7 +2,7 @@ class Ad < ActiveRecord::Base
   has_many :images, :dependent => :destroy
   belongs_to :user
   validates :ads_type_id, :user_id, :presence => true
-  attr_accessible :description, :name, :id, :ads_type_id, :updated_at, :user_id, :state
+  attr_accessible :description, :name, :id, :ads_type_id, :updated_at, :user_id, :state, :images
   
   state_machine :initial => :draft do
     state :draft, :value => 1
@@ -37,9 +37,4 @@ class Ad < ActiveRecord::Base
 	end
     
   end
-  
-
-
-
-
 end
